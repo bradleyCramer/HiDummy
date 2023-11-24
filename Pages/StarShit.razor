@@ -1,0 +1,58 @@
+@page "/StarShit"
+@using Microsoft.Extensions.Configuration
+@using System.Net.Http
+@using Microsoft.Extensions.Http
+@using System.Text.Json
+@inject IConfiguration Configuration
+@inject IHttpClientFactory HttpClientFactory
+
+<h1>Star Shit</h1>
+<h2>Here's your daily stuff about shit:</h2>
+
+<p>@imageDescription</p>
+<br/>
+<img src="@imageURL" />
+
+<p>What, you were expecting more?</p>
+
+@code {
+    protected string? imageURL;
+    protected string? imageDescription;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await FetchImageURLAsync();
+    }
+
+    private async Task FetchImageURLAsync()
+    {
+        var apiKey = Configuration["APIKeys:Development"];
+        var client = HttpClientFactory.CreateClient();
+        var response = await client.GetAsync($"https://api.nasa.gov/planetary/apod?api_key={apiKey}").ConfigureAwait(false);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var result = await response.Content.ReadAsStringAsync();
+            var model = JsonSerializer.Deserialize<StarShitModel>(result, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            if (model != null && model.Url != null)
+            {
+                imageURL = model.Url;
+                imageDescription = model.Explanation;
+            }
+        }
+    }
+
+        public class StarShitModel
+    {
+        public string? Copyright { get; set; }
+        public string? Date { get; set; }
+        public string? Explanation { get; set; }
+        public string? Hdurl { get; set; }
+        public string? Media_type { get; set; }
+        public string? Service_version { get; set; }
+        public string? Title { get; set; }
+        public string? Url { get; set; }
+    }
+}
+
+
