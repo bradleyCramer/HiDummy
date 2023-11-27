@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "HiDummy",
   "resources": {
-    "hash": "sha256-vNCkgFz5Q8Xhv6tiBBE8qLZuBVxEYpxl9E3NS1jN4EY=",
+    "hash": "sha256-d67NUGr3t40MIyxW4Zz/b73hg6Npgwc8BJOdw5uhEWk=",
     "jsModuleNative": {
       "dotnet.native.8.0.0.n5xwdyb11x.js": "sha256-LjLDIz9+J7uuiwMlQ4HbNx2BnSpphOtO2MwkoI28vdI="
     },
@@ -212,10 +212,10 @@
       "mscorlib.wasm": "sha256-cDuLeL3OCtVtiid/dyex1MVgbuzDSRwZxKzuP2Dp4mg=",
       "netstandard.wasm": "sha256-A0h86SDieTMoU/wU2JTszWCsUmMuguDcbap0b0BzsmI=",
       "System.Private.CoreLib.wasm": "sha256-/0DNIm/T0C07X7Tuz5uR8JvVCoAfEE2MnfPUSjyS9xc=",
-      "HiDummy.wasm": "sha256-qvd79ymJ0/2laZDixmtQqx/ChoY8bupISmCvO60e3TM="
+      "HiDummy.wasm": "sha256-NyPHgRFj/+sIUrlwCT6YZBm8IWUF1ey0w2wJhJqd8SY="
     },
     "pdb": {
-      "HiDummy.pdb": "sha256-MbIhZk1+nLgI3oYrPYuKweYQMaY99RTEabRJX59s4n0="
+      "HiDummy.pdb": "sha256-oEnYsDm4V9TPw0+XpfShqDFkolw0kIVaxBpn55TvZnU="
     }
   },
   "cacheBootResources": true,

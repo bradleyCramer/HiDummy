@@ -1049,3 +1049,4 @@
 /Users/bradleycramer/Source/HiDummy/obj/Debug/net8.0/refint/HiDummy.dll
 /Users/bradleycramer/Source/HiDummy/obj/Debug/net8.0/HiDummy.pdb
 /Users/bradleycramer/Source/HiDummy/obj/Debug/net8.0/ref/HiDummy.dll
+/Users/bradleycramer/Source/HiDummy/obj/Debug/net8.0/HiDummy.sourcelink.json

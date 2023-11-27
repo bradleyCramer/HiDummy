@@ -1,0 +1,53 @@
+﻿@page "/NasaShit"
+@using Microsoft.Extensions.Configuration
+@using System.Net.Http
+@using Microsoft.Extensions.Http
+@using System.Text.Json
+@using HiDummy.Models
+@inject IConfiguration Configuration
+@inject IHttpClientFactory HttpClientFactory
+
+<h3>NASA Shit</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <!-- Add more table headers as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var neo in NEObjectsList)
+        {
+            <tr>
+                <td>@neo.</td>
+                <td>@neo.</td>
+                <!-- Add more table cells as needed -->
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<Models.NearEarthObjectModel> NEObjectsList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var apiKey = Configuration["APIKeys:Development"];
+        var startDate = DateTime.Now.ToString("yyyy-MM-dd");
+        var endDate = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
+
+        var client = HttpClientFactory.CreateClient();
+        
+        var response = await client.GetAsync($"https://api.nasa.gov/neo/rest/v1/feed?start_date={startDate}&end_date={endDate}&api_key={apiKey}").ConfigureAwait(false);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var result = await response.Content.ReadAsStringAsync();
+
+            NEObjectsList = JsonSerializer.Deserialize<List<NearEarthObjectModel>>(result, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        }
+    }
+}
+
